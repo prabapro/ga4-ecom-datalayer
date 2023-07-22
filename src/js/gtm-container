@@ -1,0 +1,54 @@
+const containerIdForm = document.getElementById('containerIdForm');
+const containerIdDisplay = document.getElementById('containerIdDisplay');
+const containerIdInput = document.getElementById('containerIdInput');
+const clearContainerIdButton = document.getElementById('clearContainerId');
+
+// Check if containerId exists in localStorage
+const storedContainerId = localStorage.getItem('containerId');
+
+if (storedContainerId) {
+	// Hide the containerIdForm if containerId exists
+	containerIdForm.style.display = 'none';
+
+	// Display the stored containerId
+	containerIdDisplay.innerHTML = `🚀 <strong>Container ID</strong>: <code>${storedContainerId}</code>`;
+
+	// Show the clearContainerIdButton
+	clearContainerIdButton.style.display = 'inline-block';
+} else {
+	// Show the containerIdForm if containerId does not exist
+	containerIdForm.style.display = 'block';
+}
+
+// Add event listener to the form submission
+const form = document.querySelector('form');
+form.addEventListener('submit', function (event) {
+	event.preventDefault();
+	const value = containerIdInput.value.trim();
+
+	if (value) {
+		// Add 'GTM-' prefix to the container ID
+		const containerId = 'GTM-' + value;
+
+		// Save the containerId to localStorage
+		localStorage.setItem('containerId', containerId);
+
+		// Refresh the page
+		location.reload();
+	}
+});
+
+// Add event listener to the clearContainerIdButton
+clearContainerIdButton.addEventListener('click', function () {
+	// Remove the containerId from localStorage
+	localStorage.removeItem('containerId');
+
+	// Clear the containerIdDisplay
+	containerIdDisplay.textContent = '';
+
+	// Show the containerIdForm
+	containerIdForm.style.display = 'block';
+
+	// Hide the clearContainerIdButton
+	clearContainerIdButton.style.display = 'none';
+});

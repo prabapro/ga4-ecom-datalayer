@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>GA4 Ecommerce Events</title>
+		<link rel="stylesheet" href="./src/css/uikit.min.css" />
+		<link rel="stylesheet" href="./src/css/main.css" />
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(
+				window,
+				document,
+				'script',
+				'dataLayer',
+				localStorage.getItem('containerId')
+			);
+		</script>
+	</head>
+	<body>
+		<div class="uk-container custom-container">
+			<h1>GA4 Ecommerce Events</h1>
+			<div class="uk-container uk-margin uk-margin-top">
+				<div id="containerIdForm" class="uk-margin" style="display: none">
+					<form class="uk-form-stacked">
+						<div class="uk-margin uk-flex uk-flex-middle">
+							<label class="uk-form-label" for="containerId">
+								🌱 Enter your GTM Container ID [Eg:
+								<code>NC2T6MN</code>
+								] 👉
+								<code>GTM-</code>
+							</label>
+							<div class="uk-form-controls">
+								<input
+									class="uk-input uk-form-width-small uk-margin-right"
+									type="text"
+									id="containerIdInput"
+									name="containerId"
+									pattern="^(?!GTM-).*"
+									title="Please enter without the 'GTM-' prefix"
+								/>
+							</div>
+
+							<div>
+								<button class="uk-button uk-button-primary" type="submit">Save</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="uk-flex uk-flex-inline uk-margin uk-flex-middle">
+					<div id="containerIdDisplay"></div>
+					<button
+						class="uk-button uk-button-danger uk-margin-left"
+						type="button"
+						id="clearContainerId"
+						style="display: none"
+					>
+						Clear
+					</button>
+				</div>
+			</div>
+
+			<div class="uk-container uk-padding uk-margin uk-column-50-50">
+				<div class="uk-width-1-2">
+					<div class="uk-container uk-column-1-1 uk-padding">
+						<h2>Promotions & Lists</h2>
+						<div class="uk-button-group">
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="view_promotion"
+								onclick="view_promotion()"
+							>
+								view_promotion
+							</button>
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="select_promotion"
+								onclick="select_promotion()"
+							>
+								select_promotion
+							</button>
+							<button
+								class="uk-button uk-button-primary"
+								id="view_item_list"
+								onclick="view_item_list()"
+							>
+								view_item_list
+							</button>
+						</div>
+					</div>
+
+					<div class="uk-container uk-column-1-1 uk-padding uk-margin">
+						<h2>Product Interaction</h2>
+						<div class="uk-button-group">
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="select_item"
+								onclick="select_item()"
+							>
+								select_item
+							</button>
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="view_item"
+								onclick="view_item()"
+							>
+								view_item
+							</button>
+
+							<button
+								class="uk-button uk-button-primary"
+								id="add_to_wishlist"
+								onclick="add_to_wishlist()"
+							>
+								add_to_wishlist
+							</button>
+						</div>
+
+						<div class="uk-button-group uk-margin-top">
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="add_to_cart"
+								onclick="add_to_cart()"
+							>
+								add_to_cart
+							</button>
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="remove_from_cart"
+								onclick="remove_from_cart()"
+							>
+								remove_from_cart
+							</button>
+						</div>
+					</div>
+
+					<div class="uk-container uk-column-1-1 uk-padding uk-margin">
+						<h2>Cart Interaction</h2>
+						<div class="uk-button-group">
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="view_cart"
+								onclick="view_cart()"
+							>
+								view_cart
+							</button>
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="remove_from_cart"
+								onclick="remove_from_cart()"
+							>
+								remove_from_cart
+							</button>
+						</div>
+					</div>
+
+					<div class="uk-container uk-column-1-1 uk-padding uk-margin">
+						<h2>Checkout</h2>
+						<div class="uk-button-group">
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="begin_checkout"
+								onclick="begin_checkout()"
+							>
+								begin_checkout
+							</button>
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="add_shipping_info"
+								onclick="add_shipping_info()"
+							>
+								add_shipping_info
+							</button>
+							<button
+								class="uk-button uk-button-primary uk-margin-right"
+								id="add_payment_info"
+								onclick="add_payment_info()"
+							>
+								add_payment_info
+							</button>
+						</div>
+
+						<div class="uk-container uk-column-1-1 uk-padding uk-margin">
+							<h2>Purchase</h2>
+							<button
+								class="uk-button uk-button-secondary"
+								id="purchase"
+								onclick="purchase()"
+							>
+								purchase
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="uk-width-1-2 dataLayerBlock">
+					<h2>Data Layer Pushes</h2>
+					<pre id="dataLayerCodeBlock"></pre>
+					<p class="uk-text-muted">
+						Made with ❤️ by
+						<a href="https://www.linkedin.com/in/prabaponnambalam/" target="_blank">
+							Praba Ponnambalam
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="./src/js/app.js"></script>
+		<script src="./src/js/gtm-container"></script>
+		<script src="./src/js/products.js"></script>
+	</body>
+</html>
